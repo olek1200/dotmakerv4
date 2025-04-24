@@ -97,4 +97,4 @@ services:
 databases:
   - name: dotmaker-db-backend
     region: frankfurt
-    plan: Basic
+    plan: pro
