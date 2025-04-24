@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "trackers",
+  "info": {
+    "name": "tracker",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "imei": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "deviceId": {
+      "type": "biginteger",
+      "required": true,
+      "unique": true
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 12,
+      "minLength": 12
+    },
+    "entry": {
+      "unique": true,
+      "model": "entry"
+    },
+    "trackerNumber": {
+      "type": "uid",
+      "required": true,
+      "maxLength": 3,
+      "minLength": 3
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "races",
+  "info": {
+    "name": "race",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "entries": {
+      "via": "race",
+      "autoPopulate": false,
+      "collection": "entry"
+    },
+    "messages": {
+      "autoPopulate": false,
+      "collection": "message",
+      "via": "race"
+    },
+    "startDateTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "route": {
+      "type": "json"
+    },
+    "websiteUrl": {
+      "type": "string",
+      "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)"
+    },
+    "facebookUrl": {
+      "type": "string",
+      "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)"
+    },
+    "instagramUrl": {
+      "type": "string",
+      "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)"
+    },
+    "logo": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "checkpoints": {
+      "autoPopulate": false,
+      "collection": "checkpoint",
+      "via": "race"
+    },
+    "sponsorsLogo": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "finishDateTime": {
+      "type": "datetime"
+    },
+    "categories": {
+      "via": "race",
+      "autoPopulate": false,
+      "collection": "category"
+    }
+  }
+}

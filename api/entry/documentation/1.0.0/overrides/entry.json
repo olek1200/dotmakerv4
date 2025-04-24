@@ -1,0 +1,79 @@
+{
+  "paths": {
+    "/entries/load-csv": {
+      "post": {
+        "deprecated": false,
+        "description": "Load entries from csv",
+        "summary": "",
+        "tags": [
+          "Entry"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "csv": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NewEntry": {
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "race": {
+            "type": "string"
+          },
+          "startingNumber": {
+            "type": "integer"
+          },
+          "city": {
+            "type": "string"
+          },
+          "team": {
+            "type": "string"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "default": "universal",
+            "enum": [
+              "male",
+              "female",
+              "junior",
+              "universal"
+            ]
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "updated_by": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Entry"
+    }
+  ]
+}

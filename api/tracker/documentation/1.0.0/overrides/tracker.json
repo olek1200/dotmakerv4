@@ -1,0 +1,187 @@
+{
+  "paths": {
+    "/trackers": {
+      "put":{
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditTracker"
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "deprecated": false,
+        "description": "Delete a record",
+        "responses": {
+          "200": {
+            "description": "deletes a single record based on the ID supplied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Tracker"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "strapi id",
+            "schema": {
+              "type": "integer"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "deviceId",
+            "in": "query",
+            "required": true,
+            "description": "flespi strapiId",
+            "schema": {
+              "type": "integer"
+            },
+            "deprecated": false
+          }
+        ]
+      }
+    },
+    "/trackers/find-one": {
+      "get": {
+        "parameters": [
+          {
+            "name": "imei",
+            "in": "query",
+            "required": false,
+            "description": "IMEI",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "trackerNumber",
+            "in": "query",
+            "required": false,
+            "description": "trackerNumber",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "phoneNumber",
+            "in": "query",
+            "required": false,
+            "description": "Phone Number",
+            "schema": {
+              "type": "string"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "deviceId",
+            "in": "query",
+            "required": false,
+            "description": "Flespi deviceId",
+            "schema": {
+              "type": "number"
+            },
+            "deprecated": false
+          },
+          {
+            "name": "entry",
+            "in": "query",
+            "required": false,
+            "description": "entry id",
+            "schema": {
+              "type": "number"
+            },
+            "deprecated": false
+          }
+
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NewTracker": {
+        "required": [
+          "imei",
+          "phoneNumber",
+          "trackerNumber"
+        ],
+        "properties": {
+          "imei": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "maxLength": 12,
+            "minLength": 12
+          },
+          "trackerNumber": {
+            "type": "uid",
+            "maxLength": 3,
+            "minLength": 3
+          }
+        }
+      },
+      "EditTracker": {
+        "properties": {
+          "entry": {
+            "type": "number",
+            "nullable": true
+          },
+          "trackerNumber": {
+            "type": "uid",
+            "nullable": true
+          }
+        }
+      }
+    }
+  }
+}

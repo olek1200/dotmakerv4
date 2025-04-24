@@ -1,0 +1,140 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/races",
+      "handler": "race.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/races/count",
+      "handler": "race.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/races/:id",
+      "handler": "race.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/races/:id/delete-race-cache",
+      "handler": "race.deleteRaceCache",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/races/:id/points",
+      "handler": "race.points",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/races/:id/points-paging",
+      "handler": "race.getAllPointsWithPaging",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/races/:id/checkpoints",
+      "handler": "race.checkpoints",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/races/:id/categorized-entries",
+      "handler": "race.categorizedEntries",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/races/:id/entries",
+      "handler": "race.deleteEntries",
+      "config": {
+        "policies": [
+          "isRaceAssigned"
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/races/:id/categorized-entries-for-checkpoints",
+      "handler": "race.categorizedEntriesForCheckpoints",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/races/:id/replay-info",
+      "handler": "race.getReplayInfo",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/races",
+      "handler": "race.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/races/:id/recalculate-checkpoints",
+      "handler": "race.recalculateCheckpoints",
+      "config": {
+        "policies": [
+          "isRaceAssigned"
+        ]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/races/:id/checkpoints",
+      "handler": "race.deleteCheckpoints",
+      "config": {
+        "policies": [
+          "isRaceAssigned"
+        ]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/races/:id",
+      "handler": "race.update",
+      "config": {
+        "policies": [
+          "isRaceAssigned"
+        ]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/races/:id",
+      "handler": "race.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

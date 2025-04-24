@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "checkpoints",
+  "info": {
+    "name": "checkpoint",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "longitude": {
+      "type": "float",
+      "required": true
+    },
+    "latitude": {
+      "type": "float",
+      "required": true
+    },
+    "race": {
+      "via": "checkpoints",
+      "autoPopulate": false,
+      "model": "race"
+    },
+    "checkpoint_entries": {
+      "autoPopulate": false,
+      "collection": "checkpoint-entry",
+      "via": "checkpoint"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

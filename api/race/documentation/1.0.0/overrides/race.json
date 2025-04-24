@@ -1,0 +1,177 @@
+{
+  "paths": {
+    "/races/{id}/points": {
+      "get": {
+        "deprecated": false,
+        "description": "Return object that have entryId for the key and array of massages as the value.",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Points"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Race": {
+        "required": [
+          "id",
+          "name",
+          "startDateTime"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "raceDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "slug": {
+            "type": "uid"
+          },
+          "route": {
+            "type": "object"
+          },
+          "websiteUrl": {
+            "type": "string"
+          },
+          "facebookUrl": {
+            "type": "string"
+          },
+          "instagramUrl": {
+            "type": "string"
+          },
+          "logo": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "alternativeText": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "width": {
+                "type": "integer"
+              },
+              "height": {
+                "type": "integer"
+              },
+              "formats": {
+                "type": "object"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "number"
+              },
+              "url": {
+                "type": "string"
+              },
+              "previewUrl": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "provider_metadata": {
+                "type": "object"
+              },
+              "related": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "NewRace": {
+        "required": [
+          "name",
+          "startDateTime"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "startDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finishDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "slug": {
+            "type": "uid"
+          },
+          "route": {
+            "type": "object"
+          },
+          "websiteUrl": {
+            "type": "string"
+          },
+          "facebookUrl": {
+            "type": "string"
+          },
+          "instagramUrl": {
+            "type": "string"
+          },
+          "created_by": {
+            "type": "string"
+          },
+          "updated_by": {
+            "type": "string"
+          }
+        }
+      },
+      "Points": {
+        "properties": {
+          "[entryId<number>]": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Message"
+            }
+          }
+        }
+      }
+    }
+  }
+}

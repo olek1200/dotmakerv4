@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages",
+  "info": {
+    "name": "Message",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false,
+    "privateAttributes": [
+      "deviceId"
+    ]
+  },
+  "attributes": {
+    "deviceId": {
+      "type": "biginteger",
+      "private": true
+    },
+    "batteryLevel": {
+      "type": "integer"
+    },
+    "positionLatitude": {
+      "type": "float"
+    },
+    "positionLongitude": {
+      "type": "float"
+    },
+    "positionSpeed": {
+      "type": "decimal"
+    },
+    "reportCode": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "datetime"
+    },
+    "positionTimestamp": {
+      "type": "datetime"
+    },
+    "imei": {
+      "type": "string"
+    },
+    "entry": {
+      "via": "messages",
+      "autoPopulate": false,
+      "model": "entry"
+    },
+    "race": {
+      "via": "messages",
+      "autoPopulate": false,
+      "model": "race"
+    }
+  }
+}

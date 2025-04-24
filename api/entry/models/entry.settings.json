@@ -1,0 +1,61 @@
+{
+  "kind": "collectionType",
+  "collectionName": "entries",
+  "info": {
+    "name": "entry",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "messages": {
+      "autoPopulate": false,
+      "collection": "message",
+      "via": "entry"
+    },
+    "race": {
+      "autoPopulate": false,
+      "model": "race",
+      "via": "entries"
+    },
+    "startingNumber": {
+      "type": "string",
+      "maxLength": 3
+    },
+    "city": {
+      "type": "string"
+    },
+    "team": {
+      "type": "string"
+    },
+    "startDateTime": {
+      "type": "datetime"
+    },
+    "finishDateTime": {
+      "type": "datetime"
+    },
+    "checkpoint_entries": {
+      "autoPopulate": false,
+      "collection": "checkpoint-entry",
+      "via": "entry"
+    },
+    "raceOver": {
+      "type": "boolean",
+      "default": false
+    },
+    "category": {
+      "via": "entries",
+      "autoPopulate": false,
+      "model": "category"
+    }
+  }
+}

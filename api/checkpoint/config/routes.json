@@ -1,0 +1,54 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/checkpoints",
+      "handler": "checkpoint.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/checkpoints/count",
+      "handler": "checkpoint.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/checkpoints/:id",
+      "handler": "checkpoint.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/checkpoints",
+      "handler": "checkpoint.create",
+      "config": {
+        "policies": [
+          "global::isRaceAssignedSingleCreate"
+        ]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/checkpoints/:id",
+      "handler": "checkpoint.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/checkpoints/:id",
+      "handler": "checkpoint.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

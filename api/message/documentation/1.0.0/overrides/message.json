@@ -1,0 +1,36 @@
+{
+  "components": {
+    "schemas": {
+      "NewMessage": {
+        "properties": {
+          "battery.level": {
+            "type": "integer"
+          },
+          "position.latitude": {
+            "type": "number"
+          },
+          "position.longitude": {
+            "type": "number"
+          },
+          "position.speed": {
+            "type": "number"
+          },
+          "report.code": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "position.timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ident": {
+            "type": "string (imei)"
+          }
+        }
+      }
+    }
+  }
+}

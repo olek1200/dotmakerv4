@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "checkpoint_entries",
+  "info": {
+    "name": "checkpointEntry",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "timeInSeconds": {
+      "type": "biginteger",
+      "required": true
+    },
+    "checkpoint": {
+      "via": "checkpoint_entries",
+      "autoPopulate": false,
+      "model": "checkpoint"
+    },
+    "entry": {
+      "via": "checkpoint_entries",
+      "autoPopulate": false,
+      "model": "entry"
+    },
+    "crossingDateTime": {
+      "type": "datetime"
+    }
+  }
+}
