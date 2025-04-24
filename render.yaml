@@ -1,0 +1,100 @@
+services:
+  - type: web
+    name: dotmaker-backend
+    region: frankfurt
+    env: node
+    plan: starter plus
+#    domains:
+#      - api.dotmaker.eu
+    buildCommand: yarn install && yarn workspace backend run build
+    startCommand: yarn workspace backend run start
+    healthCheckPath: /_health
+    scaling:
+      minInstances: 1
+      maxInstances: 5
+      targetMemoryPercent: 80 # optional if targetCPUPercent is set (valid: 1-90)
+      targetCPUPercent: 75 # optional if targetMemory is set (valid: 1-90)
+    envVars:
+      - key: NODE_VERSION
+        value: 14.16.1
+      - key: NODE_ENV
+        value: production
+      - key: CLOUDINARY_NAME
+        sync: false
+      - key: CLOUDINARY_KEY
+        sync: false
+      - key: CLOUDINARY_SECRET
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dotmaker-db-backend
+          property: connectionString
+      - key: DB_DEBUG
+        value: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_JWT_SECRET
+        generateValue: true
+      - key: FLESPI_API_KEY
+        sync: false
+      - key: FLESPI_API_CHANEL_HOST
+        sync: false
+      - key: FLESPI_API_CHANEL_PORT
+        sync: false
+      - key: FLESPI_AUTHORIZATION_KEY
+        value: eeebf342c-347b-479a-b55f-28b699e04c89
+      - key: MAILJET_PUBLIC
+        sync: false
+      - key: MAILJET_SECRET
+        sync: false
+      - key: DEFAULT_FROM
+        value: noreply@dotmaker.eu
+      - key: DEFAULT_FROM_NAME
+        value: DotMaker
+      - key: DEFAULT_TO
+        value: aleksander@wisla1200.pl
+      - key: DEFAULT_TO_NAME
+        value: DotMaker
+
+  - type: web
+    name: dotmaker-admin-panel
+    env: static
+#    domains:
+#      - admin.dotmaker.eu
+    buildCommand: yarn install; yarn workspace admin-panel run build; yarn workspace admin-panel run export
+    staticPublishPath: packages/admin-panel/out
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_BACKEND_HOSTPORT
+        fromService:
+          name: dotmaker-backend
+          type: web
+          property: host
+
+  - type: web
+    name: dotmaker-map
+    env: static
+#    domains:
+#      - tracking.dotmaker.eu
+    buildCommand: yarn install; yarn workspace map run build; yarn workspace map run export
+    staticPublishPath: packages/map/out
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_GOOGLE_ANALYTICS
+        sync: false
+      - key: NEXT_PUBLIC_MAPTILER_KEY
+        sync: false
+      - key: NEXT_PUBLIC_BACKEND_HOSTPORT
+        fromService:
+          name: dotmaker-backend
+          type: web
+          property: host
+
+databases:
+  - name: dotmaker-db-backend
+    region: frankfurt
+    plan: standard
